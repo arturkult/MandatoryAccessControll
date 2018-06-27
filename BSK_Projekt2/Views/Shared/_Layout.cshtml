@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/login.js"></script>
+</head>
+<body onload="main();">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar">
+                @if (Session["loggedUser"] == null)
+    {
+            <div type="button" class="btn btn-dark">
+                @Html.ActionLink("Zaloguj", "Index", "Home", new { area = "" }, null)
+            </div>
+            <div type="button" class="btn btn-dark">
+                @Html.ActionLink("Zarejestruj", "Index", "Home", new { area = "" }, null)
+            </div>
+}
+else
+{
+            <div type="button" class="btn btn-dark">
+                @Html.ActionLink("Wyloguj", "Logout", "Home", new { area = "" }, null)
+            </div>
+            <div class="btn btn-light">
+                @Html.ActionLink("Samochody", "Index", "Cars", new { area = "" }, null)
+            </div>
+            <div class="btn btn-light">
+                @Html.ActionLink("Naprawy", "Index", "Repairs", new { area = "" }, null)
+            </div>
+            <div class="btn btn-light">
+                @Html.ActionLink("Faktury", "Index", "Invoices", new { area = "" }, null)
+            </div>
+            <span class="badge-info">Zalogowany jako @((Session["loggedUser"] as BSK_Projekt2.Models.User).UserName)</span>
+}
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

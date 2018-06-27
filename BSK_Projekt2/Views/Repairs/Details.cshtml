@@ -1,0 +1,36 @@
+﻿@model BSK_Projekt2.Models.Repair
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>Naprawa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairedCar)
+        </dt>
+
+        <dd>
+            @if (Model.RepairedCar != null)
+            {
+                @Html.ActionLink(linkText: Model.RepairedCar.Brand + " " + Model.RepairedCar.Model, actionName: "Details", controllerName: "Cars", routeValues: new { id = Model.RepairedCar.Id }, htmlAttributes: null)
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Zmień", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Wróć do listy", "Index")
+</p>
